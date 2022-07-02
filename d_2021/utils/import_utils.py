@@ -25,7 +25,10 @@ def get_obj_list(lines, names):
     for line in lines:
         a = {}
         for i in range(len(names)):
-            a[names[i]] = line[i]
+            if i != 0:
+                a[names[i]] = float(line[i])
+            else:
+                a[names[i]] = line[i]
         m_list.append(a)
     return m_list
 

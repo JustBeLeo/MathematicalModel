@@ -10,11 +10,24 @@ def str_list_2_int(m_list: list):
     return t_list
 
 
-def to_float_df(m_list: list):
+def list_to_float_df(m_list: list):
+    """
+    将list转换为float df
+    :param m_list:
+    :return:
+    """
     t_list = []
     for x in m_list:
         t_list.append(float(x))
     return pd.DataFrame(t_list)
+
+
+def convert_float_df(m_df: pd.DataFrame):
+    names = m_df.columns.values
+    for name in names:
+        for i in range(len(m_df[name])):
+            m_df[name][i] = float(m_df[name][i])
+    return m_df
 
 
 def count_zero(m_list: list):
