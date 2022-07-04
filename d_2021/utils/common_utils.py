@@ -63,3 +63,25 @@ def split_by_ratio(m_list, *ratios):
     m_list = np.random.permutation(m_list)
     ind = np.add.accumulate(np.array(ratios) * len(m_list)).astype(int)
     return [x.tolist() for x in np.split(m_list, ind)][:len(ratios)]
+
+
+def get_series_name(ps: pd.Series):
+    """
+    针对Series类型获取列名
+    :param ps:
+    :return:
+    """
+    return pd.DataFrame(ps).columns.values.tolist()[0]
+
+
+def get_sequence_difference(s1: pd.Series, s2: pd.Series):
+    ds = 0
+    n = len(s1)
+    for i in range(n):
+        ds += (s1[i] - s2[i])
+    rs = 1 - 6 * ds * ds / (n * (n * n - 1))
+    return rs
+
+
+def sort_obj_by_value(obj_list):
+    return sorted(obj_list.items(), key=lambda x: x[1], reverse=True)
